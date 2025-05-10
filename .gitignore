@@ -1,0 +1,14 @@
+# Arquivos grandes ou temporários
+data/
+reference/
+results/
+logs/
+
+# Arquivos auxiliares
+*.pyc
+*.log
+.DS_Store
+
+
+# Exemplos de resultados finais (como coverage_report.txt, .selfSM etc.)
+# serão copiados manualmente para a pasta examples.
