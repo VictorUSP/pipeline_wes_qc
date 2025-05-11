@@ -17,8 +17,8 @@ samtools idxstats "$CRAM" > "$IDXSTATS_FILE"
 
 # Processa a razão entre Y e X e infere o sexo com base em um limiar simples
 awk '
-  $1 == "X" {x = $3}
-  $1 == "Y" {y = $3}
+  $1 == "chrX" {x = $3}
+  $1 == "chrY" {y = $3}
   END {
     if (x > 0) {
       ratio = y / x
