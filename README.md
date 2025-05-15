@@ -72,24 +72,36 @@ conda install samtools wget md5sum verifybamid2 matplotlib pandas reportlab pill
 git clone https://github.com/seuusuario/pipeline_wes_qc.git
 cd pipeline_wes_qc
 ```
+2. **Dê permissão de execução aos scripts:**
 
-2. **Crie e ative o ambiente Conda:**
+```bash
+chmod +x scripts/*.sh
+```
+
+3. **Crie e ative o ambiente Conda:**
 
 ```bash
 conda create -n pipeline_wes python=3.12 -c bioconda -c conda-forge
 conda activate pipeline_wes
 ```
 
-3. **Instale as dependências:**
+4. **Instale as dependências:**
 
 ```bash
 conda install samtools wget md5sum verifybamid2 matplotlib pandas reportlab pillow
 ```
 
-4. **Edite config.sh se desejar alterar nomes de arquivos ou URLs**
+5. **Edite config.sh se desejar alterar nomes de arquivos ou URLs**
+
+6. **Execute o pipeline completo:**
+
+```bash
+./scripts/run_pipeline.sh
+```
+> O script é interativo: para cada etapa já executada (por exemplo, se os arquivos já estiverem baixados), será perguntado se deseja pular ou reexecutar. Ou e preferir, pode executar separadamente os scripts com os comandos no item 6 abaixo.
 
 
-5. **Execute os scripts em sequência:**
+7. **(Opcional) Executar os scripts individualmente:**
 
 ```bash
 bash scripts/01_download_data.sh             # Baixa arquivos e genoma de referência
@@ -98,15 +110,10 @@ bash scripts/03_inferir_sexo.sh              # Estima sexo com base em X/Y
 bash scripts/04_estimar_contaminacao.sh      # Estima contaminação com VerifyBamID2
 python scripts/05_relatorio_qc.py            # Gera gráficos da cobertura
 python scripts/06_gerar_relatorio_pdf.py     # Compila o relatório final em PDF
-bash scripts/01_download_data.sh             # Baixa arquivos e referência
-bash scripts/02_calcular_cobertura.sh        # Calcula profundidade média e cobertura ≥10x/30x
-bash scripts/03_inferir_sexo.sh              # Estima sexo com base em X/Y
-bash scripts/04_estimar_contaminacao.sh      # Estima contaminação com VerifyBamID2
-python scripts/05_relatorio_qc.py            # Gera gráficos da cobertura
-python scripts/06_gerar_relatorio_pdf.py     # Compila o relatório final em PDF
+
 ```
 
-6. **Relatório final:**
+7. **Relatório final:**
 
 O relatório final será salvo em:
 
