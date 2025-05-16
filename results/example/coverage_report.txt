@@ -1,0 +1,3 @@
+Profundidade média: 86.91x
+Cobertura ≥10x: 83.00%
+Cobertura ≥30x: 72.99%

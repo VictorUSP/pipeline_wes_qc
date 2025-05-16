@@ -130,17 +130,18 @@ story.append(Spacer(1, 12))
 story.append(Paragraph("4. Estimativa de Contaminação", subtitle_style))
 freemix = None
 if os.path.exists(selfsm_path):
-    with open(selfsm_path) as f:
-        for linha in f:
-            if not linha.startswith("#"):
-                campos = linha.strip().split("\t")
-                if len(campos) >= 10:
-                    freemix = campos[9]
-                    break
-if freemix:
-    story.append(Paragraph(f"FREEMIX (fração estimada de contaminação): {freemix}", normal))
+    try:
+        import pandas as pd
+        selfsm = pd.read_csv(selfsm_path, sep='\t')
+        if "FREEMIX" in selfsm.columns:
+            freemix = selfsm["FREEMIX"].values[0]
+            story.append(Paragraph(f"FREEMIX (fração estimada de contaminação): {freemix:.6f}", normal))
+        else:
+            story.append(Paragraph("Coluna 'FREEMIX' não encontrada no arquivo selfSM.", normal))
+    except Exception as e:
+        story.append(Paragraph(f"Erro ao ler arquivo selfSM: {str(e)}", normal))
 else:
-    story.append(Paragraph("Arquivo verifybamid2.selfSM não encontrado ou valor de FREEMIX ausente.", normal))
+    story.append(Paragraph("Arquivo verifybamid2.selfSM não encontrado.", normal))
 story.append(Spacer(1, 12))
 
 # Seção 5: Conclusão

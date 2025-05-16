@@ -39,12 +39,12 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIGURES_DIR, "cobertura_acumulada.png"))
 
 # === 2. Relatório resumido ===
-print("\n📄 Relatório de Cobertura (coverage_report.txt):\n")
+print("\n Relatório de Cobertura (coverage_report.txt):\n")
 with open(os.path.join(RESULTS_DIR, "coverage_report.txt")) as f:
     print(f.read())
 
 # === 3. Inferência de sexo ===
-print("\n📄 Inferência de Sexo (sexo_inferido.txt):\n")
+print("\n Inferência de Sexo (sexo_inferido.txt):\n")
 with open(os.path.join(RESULTS_DIR, "sexo_inferido.txt")) as f:
     print(f.read())
 
@@ -53,17 +53,11 @@ selfsm_path = os.path.join(RESULTS_DIR, "verifybamid2.selfSM")
 
 if os.path.exists(selfsm_path):
     try:
-        selfsm = pd.read_csv(selfsm_path, sep='\t', comment='#')
-        # Tenta localizar a coluna que contenha 'FREEMIX'
-        freemix_col = [col for col in selfsm.columns if "FREEMIX" in col.upper()]
-        if freemix_col:
-            freemix_value = selfsm[freemix_col[0]].values[0]
-            print(f"\n📄 Contaminação estimada ({freemix_col[0]}): {freemix_value:.6f}")
-        else:
-            print("\n⚠️  Coluna 'FREEMIX' não encontrada no arquivo selfSM.")
-            print("🧪 Colunas detectadas:", selfsm.columns.tolist())
+        selfsm = pd.read_csv(selfsm_path, sep='\t')  # REMOVIDO: comment='#'
+        freemix = selfsm["FREEMIX"].values[0]
+        print(f"\n Estimativa de contaminação (FREEMIX): {freemix:.6f}")
     except Exception as e:
-        print("\n❌ Erro ao ler o arquivo selfSM:", str(e))
+        print("\n❌ Erro ao processar o arquivo selfSM:", str(e))
 else:
     print("\n⚠️  Arquivo verifybamid2.selfSM não encontrado.")
 

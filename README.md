@@ -38,7 +38,6 @@ pipeline_wes_qc/
 ├── config.sh # Arquivo com os parâmetros
 └── README.md
 
-
 ---
 
 ## Dados utilizados
@@ -51,6 +50,9 @@ Os dados de entrada são públicos e não estão incluídos no repositório. Ele
 
 > A referência GRCh38 utilizada inclui regiões HLA e sequências “decoy”, e corresponde exatamente à versão utilizada para o mapeamento do arquivo `.cram` fornecido. A consistência entre o alinhamento original e a referência utilizada é fundamental para garantir a validade dos resultados das análises (como o cálculo de cobertura).
 
+
+> A ferramenta escolhida para a estimativa de contaminação por DNA exógeno foi o **VerifyBamID2**, desenvolvida pelo Broad Institute of MIT. Ela é amplamente utilizada para detectar contaminação em amostras de DNA humano a partir de arquivos BAM/CRAM, utilizando painéis de SNPs populacionais e decomposição por componentes principais (PCA). A principal vantagem do VerifyBamID2 é sua capacidade de estimar com precisão a fração de contaminação (FREEMIX), mesmo em amostras de baixa cobertura ou com ancestrais mistos, sem exigir identificação de genótipos conhecidos da amostra. Além disso, a ferramenta possui painéis pré-calculados disponíveis para GRCh38, compatíveis com o arquivo `.cram` utilizado neste desafio, o que garante consistência com o mapeamento da amostra.
+
 ---
 
 ## Dependências
@@ -60,7 +62,8 @@ Os dados de entrada são públicos e não estão incluídos no repositório. Ele
 ```bash
 conda create -n pipeline_wes python=3.12 -c bioconda -c conda-forge
 conda activate pipeline_wes
-conda install samtools wget md5sum verifybamid2 matplotlib pandas reportlab pillow
+conda install samtools wget verifybamid2 matplotlib pandas reportlab pillow seaborn -c bioconda -c conda-forge
+
 ```
 ---
 
@@ -69,13 +72,15 @@ conda install samtools wget md5sum verifybamid2 matplotlib pandas reportlab pill
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seuusuario/pipeline_wes_qc.git
+git clone https://github.com/VictorUSP/pipeline_wes_qc.git
 cd pipeline_wes_qc
 ```
 2. **Dê permissão de execução aos scripts:**
 
 ```bash
 chmod +x scripts/*.sh
+chmod +x run_pipeline.sh
+
 ```
 
 3. **Crie e ative o ambiente Conda:**
@@ -88,7 +93,7 @@ conda activate pipeline_wes
 4. **Instale as dependências:**
 
 ```bash
-conda install samtools wget md5sum verifybamid2 matplotlib pandas reportlab pillow
+conda install samtools wget verifybamid2 matplotlib pandas reportlab pillow seaborn -c bioconda -c conda-forge
 ```
 
 5. **Edite config.sh se desejar alterar nomes de arquivos ou URLs**
