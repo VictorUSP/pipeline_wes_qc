@@ -26,17 +26,19 @@ Este pipeline executa um fluxo completo de controle de qualidade em dados WES, u
 
 ## Estrutura de diretórios
 
+```
 pipeline_wes_qc/
-├── assets/ # Logo do InCor
-├── data/ # Arquivos .cram, .crai e BED
-├── reference/ # Referência genômica (.fa e .fai)
-├── results/ # Saídas e relatórios
-│ ├── figures/ # Gráficos gerados pelo Python
-│ └── relatorio_qc_wes.pdf
-├── logs/ # Logs das execuções
-├── scripts/ # Scripts do pipeline
-├── config.sh # Arquivo com os parâmetros
+├── assets/           # Logo do InCor
+├── data/             # Arquivos .cram, .crai e BED
+├── reference/        # Referência genômica (.fa e .fai)
+├── results/          # Saídas e relatórios
+│   ├── figures/      # Gráficos gerados pelo Python
+│   └── relatorio_qc_wes.pdf
+├── logs/             # Logs das execuções
+├── scripts/          # Scripts do pipeline
+├── config.sh         # Arquivo com os parâmetros
 └── README.md
+```
 
 ---
 
