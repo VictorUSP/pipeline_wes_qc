@@ -18,3 +18,4 @@ logs/*
 
 # Exemplos de resultados finais (como coverage_report.txt, .selfSM etc.)
 # serão copiados manualmente para a pasta examples.
+results/example/depth.txt
