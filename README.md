@@ -1,4 +1,4 @@
-# Pipeline-WES-QC
+## Pipeline-WES-QC
 
 Pipeline automatizado para controle de qualidade de dados de Whole Exome Sequencing (WES), implementado com Bash e Python. 
 Este projeto foi desenvolvido como parte de um desafio técnico no InCor – Instituto do Coração, FMUSP,  
